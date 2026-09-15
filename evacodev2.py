@@ -2,7 +2,9 @@ import json
 from datetime import datetime
 import matplotlib.pyplot as plt
 
-with open("eva-data.json", "r", encoding="utf-8") as file:
+print("What is the data file name?")
+input_file = input()
+with open(input_file, "r", encoding="utf-8") as file:
     eva_data = json.load(file)
 
 records = []
