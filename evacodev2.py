@@ -2,15 +2,13 @@ import json
 from datetime import datetime
 import matplotlib.pyplot as plt
 
-print("What is the data file name?")
-input_file = input()
+input_file = input("What is the data file name: ")
 with open(input_file, "r", encoding="utf-8") as file:
     eva_data = json.load(file)
 
 records = []
 
-print("Please input the country you want to see data for: ")
-COUNTRY = input()
+COUNTRY = input("Please input the country you want to see data for: ")
 
 def check_country(record):
     country = record[2]
