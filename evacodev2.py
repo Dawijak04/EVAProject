@@ -32,6 +32,51 @@ records.sort(key=lambda record: record[0])
 records_country = filter(check_country, records)
 
 
+def report_eva_categories(category_records, country="all countries"):
+
+    short = 0
+    standard = 0
+    long = 0
+    total = 0
+
+    for date, duration_hours, country_text in category_records:
+
+        total += 1
+
+        #Short
+        if duration_hours < 4:
+            short += 1
+
+        #Standard
+        elif duration_hours < 7:
+            standard += 1
+
+        #Long
+        else:
+            long += 1
+
+    print(f"\nEVA duration categories for {country}")
+    print("--------------------------------------")
+
+    if total == 0:
+        print("No EVA records found.")
+        return
+
+    print(
+        f"Short (Less than 4 hours): {short}"
+        f"({short / total * 100:.2f}%)"
+    )
+    print(
+        f"Standard (4 to 7 hours): {standard}"
+        f"({standard / total * 100:.2f}%)"
+    )
+    print(
+        f"Long (More than 7 hours): {long}"
+        f"({long / total * 100:.2f}%)"
+    )
+
+
+
 def cumulate_hour_and_plot(plot_records, country="all countries"):
     dates = []
     cumulative_hours = []
@@ -52,3 +97,5 @@ def cumulate_hour_and_plot(plot_records, country="all countries"):
 
 cumulate_hour_and_plot(records)
 cumulate_hour_and_plot(records_country, COUNTRY)
+
+report_eva_categories(records)
